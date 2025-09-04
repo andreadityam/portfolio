@@ -90,7 +90,7 @@ function App() {
   }, []);
 
   return (
-    <div id='home' className='min-h-screen bg-gradient-to-br from-white to-blue-50'>
+    <div id='home' className='min-h-screen bg-gradient-to-br from-white to-blue-100/80'>
       <div className={`flex justify-center md:justify-between p-5 top-0 sticky z-50  ${isScrolled ? 'border-b-2 border-blue-100 bg-white' : 'border-0'}`}>
         <header className='text-blue-600 text-xl font-bold md:ml-5'>Andre's <span className='text-black/80'>Portfolio</span></header>
         <nav className='hidden md:block my-auto'>
