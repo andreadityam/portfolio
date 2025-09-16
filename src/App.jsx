@@ -7,7 +7,7 @@ import car from './assets/cardashboard.png'
 import car2 from './assets/careda.png'
 import cus from './assets/customer.png'
 import { Button } from "@/components/ui/button"
-import { File, Mail, User, Code, BarChart3, Server, Smartphone, Database, ExternalLink } from 'lucide-react';
+import { File, Mail, User, Code, BarChart3, Server, Smartphone, Database, ExternalLink, ArrowUp } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -70,6 +70,7 @@ const cvPath = `${import.meta.env.BASE_URL}/CV.pdf`;
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled2, setIsScrolled2] = useState(false);
   const [iconColor, setIconColor] = useState('#000000');
   const [iconColor2, setIconColor2] = useState('#000000');
 
@@ -81,16 +82,32 @@ function App() {
         setIsScrolled(false);
       }
     };
+    const handleScroll2 = () => {
+      if (window.scrollY > 200) {
+        setIsScrolled2(true);
+      } else {
+        setIsScrolled2(false);
+      }
+    };
 
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll2);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll2);
     };
   }, []);
 
   return (
     <div id='home' className='min-h-screen bg-gradient-to-br from-white to-blue-100/80'>
+      <div className={`${isScrolled2 ? '' : 'hidden'}`}>
+        <a href='#home'>
+          <p className='fixed flex items-center justify-center z-50 right-12 bottom-12 sm:right-9 sm:bottom-9 h-12 w-12 sm:h-15 sm:w-15 rounded-full bg-white border-2 border-blue-200 shadow-md hover:bg-blue-50 transition-all'>
+            <ArrowUp className='text-blue-500' />
+          </p>
+        </a>
+      </div>
       <div className={`flex justify-center md:justify-between p-5 top-0 sticky z-50  ${isScrolled ? 'border-b-2 border-blue-100 bg-white' : 'border-0'}`}>
         <header className='text-blue-600 text-xl font-bold md:ml-5'>Andre's <span className='text-black/80'>Portfolio</span></header>
         <nav className='hidden md:block my-auto'>
@@ -106,10 +123,10 @@ function App() {
         <h1 className='font-bold md:text-5xl text-gray-800 max-w-2xl mx-auto text-3xl'>Hello, I'm</h1>
         <h1 className='pt-2 font-bold md:text-5xl max-w-2xl mx-auto text-3xl'> <span className='text-blue-700'>Andre Aditya Amann</span></h1>
         <p className='text-gray-950/70 mt-5 md:text-lg max-w-2xl mx-auto text-md'>A passionate Full-Stack Developer & Data Analyst dedicated to building innovative web applications and extracting actionable insights from data.</p>
-        <div className='mt-5 px-10 sm:px-25 flex flex-col sm:flex-row justify-center gap-4'>
-          <a href='#contacts'><Button className='hover:-translate-y-0.5 bg-gray-800 text-white rounded-lg cursor-pointer hover:bg-gray-800/90'><User />Contacts</Button></a>
-          <a href={cvPath} download='CV_Andre.pdf'><Button className='hover:-translate-y-0.5 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-800/90'><File />Download CV</Button></a>
-          <a href='https://github.com/andreadityam' target='_blank'><Button onMouseEnter={() => setIconColor('white')} onMouseLeave={() => setIconColor('#000000')} className='bg-white hover:-translate-y-0.5 border-gray-300 hover:bg-blue-600 hover:text-white cursor-pointer' variant="outline"><svg fill={iconColor} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>View GitHub</Button></a>
+        <div className='mt-5 px-7 sm:px-25 flex flex-col sm:flex-row justify-center gap-4'>
+          <a href='#contacts'><Button className='hover:-translate-y-0.5 w-full bg-gray-800 text-white rounded-lg cursor-pointer hover:bg-gray-800/90'><User />Contacts</Button></a>
+          <a href={cvPath} download='CV_Andre.pdf'><Button className='hover:-translate-y-0.5 w-full bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-800/90'><File />Download CV</Button></a>
+          <a href='https://github.com/andreadityam' target='_blank'><Button onMouseEnter={() => setIconColor('white')} onMouseLeave={() => setIconColor('#000000')} className='bg-white hover:-translate-y-0.5 w-full border-gray-300 hover:bg-blue-600 hover:text-white cursor-pointer' variant="outline"><svg fill={iconColor} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>View GitHub</Button></a>
         </div>
       </section>
       <section id='skills' className='text-center p-5 md:pt-15 lg:px-25 pb-25'>
@@ -159,15 +176,15 @@ function App() {
         </div>
       </section>
       <section id='contacts' className='pb-15 flex flex-col gap-5 justify-center items-center'>
-        <a href='https://github.com/andreadityam'><p className='hover:bg-black hover:text-white w-50 transition-all text-black/90 font-semibold text-xl bg-white rounded-lg px-10 py-2 border-2 border-gray-200'>All Projects</p></a>
+        <a href='https://github.com/andreadityam'><p className='hover:bg-black hover:text-white sm:w-50 w-70 text-center transition-all text-black/90 font-semibold text-xl bg-white rounded-lg px-10 py-2 border-2 border-gray-200'>All Projects</p></a>
         <p className='pt-15 text-xl md:text-3xl font-bold text-black/90'>Open to Work!</p>
         <p className='px-8 md:px-5 max-w-160 text-center text-sm lg:text-lg text-gray-700'>I'm always interested in new opportunities and exciting projects. Whether you need a fullstack developer or data analysis expertise, let's connect!</p>
         <div className='md:px-2 px-8 flex md:flex-row flex-col gap-2'>
-          <a href="mailto:andreadityam@gmail.com"><p className='bg-blue-600 px-4 py-1.5 rounded-lg text-normal hover:bg-blue-500 transition-all cursor-pointer hover:-translate-y-0.5 hover:border-blue-500 text-white flex gap-2 text-sm items-center border-2 border-blue-600'><Mail />Email Me</p></a>
-          <a target='_blank' href='https://www.linkedin.com/in/andre-amann/'><p onMouseEnter={() => setIconColor('white')} onMouseLeave={() => setIconColor('#000000')} className='hover:-translate-y-0.5 bg-white px-4 py-1.5 rounded-lg text-normal hover:bg-blue-600 transition-all cursor-pointer border-2 border-gray-200 hover:border-blue-600 text-black hover:text-white flex gap-2 text-sm items-center'><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 30 30">
+          <a href="mailto:andreadityam@gmail.com"><Button className='bg-blue-600 w-full px-4 py-1.5 rounded-lg text-normal hover:bg-blue-500 transition-all cursor-pointer hover:-translate-y-0.5 hover:border-blue-500 text-white flex gap-2 text-sm items-center border-2 border-blue-600'><Mail />Email Me</Button></a>
+          <a target='_blank' href='https://www.linkedin.com/in/andre-amann/'><Button onMouseEnter={() => setIconColor('white')} onMouseLeave={() => setIconColor('#000000')} className='hover:-translate-y-0.5 w-full bg-white px-4 py-1.5 rounded-lg text-normal hover:bg-blue-600 transition-all cursor-pointer border-2 border-gray-200 hover:border-blue-600 text-black hover:text-white flex gap-2 text-sm items-center'><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 30 30">
             <path fill={iconColor} d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"></path>
-          </svg>LinkedIn</p></a>
-          <a target='_blank' href='https://github.com/andreadityam'><p onMouseEnter={() => setIconColor2('white')} onMouseLeave={() => setIconColor2('#000000')} className='bg-white px-4 py-2 rounded-lg text-normal hover:bg-blue-600 transition-all cursor-pointer border-2 hover:-translate-y-0.5 border-gray-200 hover:border-blue-600 text-black hover:text-white flex gap-2 text-sm items-center'><svg fill={iconColor2} width="20" height="20" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>GitHub Profile</p></a>
+          </svg>LinkedIn</Button></a>
+          <a target='_blank' href='https://github.com/andreadityam'><Button onMouseEnter={() => setIconColor2('white')} onMouseLeave={() => setIconColor2('#000000')} className='bg-white px-4 py-2 w-70 sm:w-full rounded-lg text-normal hover:bg-blue-600 transition-all cursor-pointer border-2 hover:-translate-y-0.5 border-gray-200 hover:border-blue-600 text-black hover:text-white flex gap-2 text-sm items-center'><svg fill={iconColor2} width="20" height="20" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>GitHub Profile</Button></a>
         </div>
         <p className='text-sm pt-2 text-gray-700'>Email Address: <span className='font-medium text-gray-900'>andreadityam@gmail.com</span></p>
       </section>
